@@ -152,18 +152,24 @@ $.Thailand = function (options) {
         var expanded = [ ];
         data.forEach(function (provinceEntry) {
             var province = provinceEntry[0];
-            var amphurList = provinceEntry[1];
+            var provinceCode = provinceEntry[1];
+            var amphurList = provinceEntry[2];
             amphurList.forEach(function (amphurEntry) {
                 var amphur = amphurEntry[0];
-                var districtList = amphurEntry[1];
+                var amphurCode = amphurEntry[1];
+                var districtList = amphurEntry[2];
                 districtList.forEach(function (districtEntry) {
                     var district = districtEntry[0];
-                    var zipCodeList = districtEntry[1] instanceof Array ? districtEntry[1] : [districtEntry[1]];
+                    var districtCode = districtEntry[1];
+                    var zipCodeList = districtEntry[2] instanceof Array ? districtEntry[2] : [districtEntry[2]];
                     zipCodeList.forEach(function (zipCode) {
                         expanded.push({
                             d: district === 0 ? amphur : district,
+                            dc: districtCode,
                             a: amphur,
+                            ac: amphurCode,
                             p: province,
+                            pc: provinceCode,
                             z: zipCode
                         });
                     });
